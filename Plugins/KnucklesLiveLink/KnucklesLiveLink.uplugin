@@ -1,0 +1,28 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1 SunRock alpha",
+	"FriendlyName": "Knuckles LiveLink and Input System",
+	"Description": "SteamVR Knuckles LiveLink and Input System Plugin by RunebergVR",
+	"Category": "Virtual Reality",
+	"CreatedBy": "runeberg.io",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "runeberg.io",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"Installed": false,
+  "Modules": [
+    {
+      "Name": "KnucklesLiveLink",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    },
+    {
+      "Name": "KnucklesLiveLinkEditor",
+      "Type": "Developer",
+      "LoadingPhase": "Default"
+    }
+  ]
+}

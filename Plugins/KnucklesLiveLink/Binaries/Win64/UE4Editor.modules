@@ -1,0 +1,8 @@
+{
+	"BuildId": "4489857",
+	"Modules": 
+	{
+		"KnucklesLiveLink": "UE4Editor-KnucklesLiveLink.dll",
+		"KnucklesLiveLinkEditor": "UE4Editor-KnucklesLiveLinkEditor.dll"
+	}
+}

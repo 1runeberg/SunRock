@@ -8,7 +8,7 @@ Note that this demo project only works with UE4.21, SteamVR EV2 & EV3 Knuckles H
 ## Preview Video:
 https://youtu.be/0Z49S7Q5lpw
 
-[![KNUCKLES UE4 PLUGIN](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE "Knuckles UE4 Plugin Overview")
+[![KNUCKLES UE4 PLUGIN](http://img.youtube.com/vi/DDu5W_b88N0/0.jpg)](http://www.youtube.com/watch?v=DDu5W_b88N0 "Knuckles UE4 Plugin Overview")
 
 ## Demo Project Requirements
 
