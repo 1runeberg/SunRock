@@ -12,6 +12,7 @@ This demo project only works with UE4.21, SteamVR EV2 & EV3 Knuckles Hardware **
 3. Change the BuildID to match your UE4 editor BuildID and it'll load (find this by looking in 'Engine > Binaries > Win64 > UE4Editor.modules')
 
 Workaround courtesy of: https://steamcommunity.com/id/itsnotmetrustme
+Forum Post: https://steamcommunity.com/app/633750/discussions/0/1735469230214704049/#c2805074491024860301
 
 **NOTE 2: To reset Action Manifest for UE4Editor to defaults:**
 
@@ -20,6 +21,7 @@ Workaround courtesy of: https://steamcommunity.com/id/itsnotmetrustme
 3. Delete this section to restore defaults 
 
 Courtesy of: https://steamcommunity.com/id/lamboman007
+Forum Post: https://steamcommunity.com/app/633750/discussions/0/1730963192554016903/
 
 ## Preview Video:
 
