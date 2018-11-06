@@ -22,7 +22,6 @@ Workaround courtesy of: https://steamcommunity.com/id/itsnotmetrustme
 Courtesy of: https://steamcommunity.com/id/lamboman007
 
 ## Preview Video:
-https://youtu.be/0Z49S7Q5lpw
 
 [![KNUCKLES UE4 PLUGIN](http://img.youtube.com/vi/DDu5W_b88N0/0.jpg)](http://www.youtube.com/watch?v=DDu5W_b88N0 "Knuckles UE4 Plugin Overview")
 
