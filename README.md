@@ -3,7 +3,16 @@
 
 Includes a Livelink Plugin for SteamVR's new Knuckles Streaming Hand Skeletal Data System and a hook to the new Action Binding System to UE4's native Event System.
 
-Note that this demo project only works with UE4.21, SteamVR EV2 & EV3 Knuckles Hardware **AND** Steam MUST be running.
+Note that this demo project only works with UE4.21, SteamVR EV2 & EV3 Knuckles Hardware **AND** Steam **MUST** be running.
+
+**If you are using a custom 4.21 Build (i.e. from Source rather than from the Launcher), use the following instructions to ensure the Binary plugins here work for your Source Built Engine:**
+
+1. Go to 'Plugins > KnucklesLiveLink > Binaries > Win64' 
+2. Edit the 'UE4Editor.modules' file. 
+3. Change the BuildID to match your UE4 editor BuildID and it'll load (find this by looking in 'Engine > Binaries > Win64 > UE4Editor.modules')
+
+Workaround courtesy of: https://steamcommunity.com/id/itsnotmetrustme
+
 
 ## Preview Video:
 https://youtu.be/0Z49S7Q5lpw
