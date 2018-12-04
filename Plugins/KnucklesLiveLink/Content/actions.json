@@ -109,7 +109,273 @@
     {
       "name": "/actions/default/out/VibrateRight",
       "type": "vibration"
-    }
+    },
+    {
+			"name": "/actions/default/in/Head_Proximity",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Left_System_Press",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Left_System_Touch",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Left_ApplicationMenu_Press",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Left_ApplicationMenu_Touch",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Left_Grip_Press",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Left_Grip_Touch",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Left_A_Press",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Left_A_Touch",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Left_Axis0_Press",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Left_Axis0_Touch",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Left_Axis0_Value",
+			"type": "vector2"
+		},
+		{
+			"name": "/actions/default/in/Left_Axis1_Press",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Left_Axis1_Touch",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Left_Axis1_Value",
+			"type": "vector1"
+		},
+		{
+			"name": "/actions/default/in/Left_Axis2_Press",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Left_Axis2_Touch",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Left_Axis2_Value1",
+			"requirement" : "optional",
+			"type": "vector1"
+		},
+		{
+			"name": "/actions/default/in/Left_Axis2_Value2",
+			"requirement" : "optional",
+			"type": "vector2"
+		},
+		{
+			"name": "/actions/default/in/Left_Axis3_Press",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Left_Axis3_Touch",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Left_Axis3_Value_e0",
+			"requirement" : "optional",
+			"type": "vector1"
+		},
+		{
+			"name": "/actions/default/in/Left_Axis3_Value_e1",
+			"requirement" : "optional",
+			"type": "vector1"
+		},
+		{
+			"name": "/actions/default/in/Left_Axis4_Press",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Left_Axis4_Touch",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Left_Axis4_Value_e0",
+			"requirement" : "optional",
+			"type": "vector1"
+		},
+		{
+			"name": "/actions/default/in/Left_Axis4_Value_e1",
+			"requirement" : "optional",
+			"type": "vector1"
+		},
+		{
+			"name": "/actions/default/in/Left_Pose",
+			"type": "pose"
+		},
+		{
+			"name": "/actions/default/out/Left_Haptic",
+			"type": "vibration"
+		},
+		{
+			"name": "/actions/default/in/Right_System_Press",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Right_System_Touch",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Right_ApplicationMenu_Press",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Right_ApplicationMenu_Touch",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Right_Grip_Press",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Right_Grip_Touch",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Right_A_Press",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Right_A_Touch",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Right_Axis0_Press",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Right_Axis0_Touch",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Right_Axis0_Value",
+			"type": "vector2"
+		},
+		{
+			"name": "/actions/default/in/Right_Axis1_Press",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Right_Axis1_Touch",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Right_Axis1_Value",
+			"type": "vector1"
+		},
+		{
+			"name": "/actions/default/in/Right_Axis2_Press",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Right_Axis2_Touch",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Right_Axis2_Value1",
+			"requirement" : "optional",
+			"type": "vector1"
+		},
+		{
+			"name": "/actions/default/in/Right_Axis2_Value2",
+			"requirement" : "optional",
+			"type": "vector2"
+		},
+		{
+			"name": "/actions/default/in/Right_Axis3_Press",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Right_Axis3_Touch",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Right_Axis3_Value_e0",
+			"requirement" : "optional",
+			"type": "vector1"
+		},
+		{
+			"name": "/actions/default/in/Right_Axis3_Value_e1",
+			"requirement" : "optional",
+			"type": "vector1"
+		},
+		{
+			"name": "/actions/default/in/Right_Axis4_Press",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Right_Axis4_Touch",
+			"requirement" : "optional",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/default/in/Right_Axis4_Value_e0",
+			"requirement" : "optional",
+			"type": "vector1"
+		},
+		{
+			"name": "/actions/default/in/Right_Axis4_Value_e1",
+			"requirement" : "optional",
+			"type": "vector1"
+		},
+		{
+			"name": "/actions/default/in/Right_Pose",
+			"type": "pose"
+		},
+		{
+			"name": "/actions/default/out/Right_Haptic",
+			"type": "vibration"
+		}
   ],
   "action_sets": [
     {

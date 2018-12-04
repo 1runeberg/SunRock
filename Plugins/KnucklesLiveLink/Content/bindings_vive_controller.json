@@ -1,23 +1,23 @@
 {
    "bindings" : {
-      "/actions/legacy" : {
+      "/actions/default" : {
          "haptics" : [
             {
-               "output" : "/actions/legacy/out/left_haptic",
+               "output" : "/actions/default/out/left_haptic",
                "path" : "/user/hand/left/output/haptic"
             },
             {
-               "output" : "/actions/legacy/out/right_haptic",
+               "output" : "/actions/default/out/right_haptic",
                "path" : "/user/hand/right/output/haptic"
             }
          ],
          "poses" : [
             {
-               "output" : "/actions/legacy/in/Left_Pose",
+               "output" : "/actions/default/in/Left_Pose",
                "path" : "/user/hand/left/pose/raw"
             },
             {
-               "output" : "/actions/legacy/in/Right_Pose",
+               "output" : "/actions/default/in/Right_Pose",
                "path" : "/user/hand/right/pose/raw"
             }
          ],
@@ -25,7 +25,7 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/legacy/in/left_system_press"
+                     "output" : "/actions/default/in/left_system_press"
                   }
                },
                "mode" : "button",
@@ -34,10 +34,10 @@
             {
                "inputs" : {
                   "pull" : {
-                     "output" : "/actions/legacy/in/left_axis1_value"
+                     "output" : "/actions/default/in/left_axis1_value"
                   },
                   "touch" : {
-                     "output" : "/actions/legacy/in/left_axis1_touch"
+                     "output" : "/actions/default/in/left_axis1_touch"
                   }
                },
                "mode" : "trigger",
@@ -46,7 +46,7 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/legacy/in/right_system_press"
+                     "output" : "/actions/default/in/right_system_press"
                   }
                },
                "mode" : "button",
@@ -55,7 +55,7 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/legacy/in/right_grip_press"
+                     "output" : "/actions/default/in/right_grip_press"
                   }
                },
                "mode" : "button",
@@ -64,7 +64,7 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/legacy/in/left_grip_press"
+                     "output" : "/actions/default/in/left_grip_press"
                   }
                },
                "mode" : "button",
@@ -73,7 +73,7 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/legacy/in/left_applicationmenu_press"
+                     "output" : "/actions/default/in/left_applicationmenu_press"
                   }
                },
                "mode" : "button",
@@ -82,7 +82,7 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/legacy/in/right_applicationmenu_press"
+                     "output" : "/actions/default/in/right_applicationmenu_press"
                   }
                },
                "mode" : "button",
@@ -91,13 +91,13 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/legacy/in/left_axis0_press"
+                     "output" : "/actions/default/in/left_axis0_press"
                   },
                   "position" : {
-                     "output" : "/actions/legacy/in/left_axis0_value"
+                     "output" : "/actions/default/in/left_axis0_value"
                   },
                   "touch" : {
-                     "output" : "/actions/legacy/in/left_axis0_touch"
+                     "output" : "/actions/default/in/left_axis0_touch"
                   }
                },
                "mode" : "trackpad",
@@ -106,13 +106,13 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/legacy/in/right_axis0_press"
+                     "output" : "/actions/default/in/right_axis0_press"
                   },
                   "position" : {
-                     "output" : "/actions/legacy/in/right_axis0_value"
+                     "output" : "/actions/default/in/right_axis0_value"
                   },
                   "touch" : {
-                     "output" : "/actions/legacy/in/right_axis0_touch"
+                     "output" : "/actions/default/in/right_axis0_touch"
                   }
                },
                "mode" : "trackpad",
@@ -121,10 +121,10 @@
             {
                "inputs" : {
                   "pull" : {
-                     "output" : "/actions/legacy/in/right_axis1_value"
+                     "output" : "/actions/default/in/right_axis1_value"
                   },
                   "touch" : {
-                     "output" : "/actions/legacy/in/right_axis1_touch"
+                     "output" : "/actions/default/in/right_axis1_touch"
                   }
                },
                "mode" : "trigger",
@@ -133,7 +133,7 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/legacy/in/left_axis1_press"
+                     "output" : "/actions/default/in/left_axis1_press"
                   }
                },
                "mode" : "button",
@@ -145,7 +145,7 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/legacy/in/right_axis1_press"
+                     "output" : "/actions/default/in/right_axis1_press"
                   }
                },
                "mode" : "button",
