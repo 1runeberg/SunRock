@@ -38,9 +38,11 @@
 # Precompiled Assets
 SourceArt/**/*.png
 SourceArt/**/*.tga
-# Binary Files
+# Binary Files - Do not ignore binaries in this repo for BP-Only Projects
 # Binaries/*
 Plugins/*/Binaries/*/*.pdb
+Binaries/*/*.pdb
+Binaries/*/*.exe
 # Builds
 Build/*
 # Whitelist PakBlacklist-<BuildConfiguration>.txt files
@@ -56,6 +58,5 @@ Saved/*
 # Compiled source files for the engine to use
 Intermediate/*
 Plugins/*/Intermediate/*
-Plugins/*/Source/*
 # Cache files for the editor to use
 DerivedDataCache/*

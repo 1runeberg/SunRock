@@ -3,6 +3,7 @@
 	"Modules": 
 	{
 		"KnucklesLiveLink": "UE4Editor-KnucklesLiveLink.dll",
-		"KnucklesLiveLinkEditor": "UE4Editor-KnucklesLiveLinkEditor.dll"
+		"KnucklesLiveLinkEditor": "UE4Editor-KnucklesLiveLinkEditor.dll",
+		"KnucklesVRController": "UE4Editor-KnucklesVRController.dll"
 	}
 }

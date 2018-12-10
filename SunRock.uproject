@@ -3,6 +3,13 @@
 	"EngineAssociation": "4.21",
 	"Category": "",
 	"Description": "",
+	"Modules": [
+		{
+			"Name": "SunRock",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
 	"Plugins": [
 		{
 			"Name": "LiveLink",
@@ -12,5 +19,9 @@
 			"Name": "ApexDestruction",
 			"Enabled": true
 		}
+	],
+	"TargetPlatforms": [
+		"WindowsNoEditor",
+		"LinuxNoEditor"
 	]
 }

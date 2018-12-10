@@ -1,0 +1,47 @@
+// Copyright 1998-2018 Epic Games, Inc. All Rights Reserved.
+using UnrealBuildTool;
+using System.IO;
+
+public class KnucklesLiveLinkEditor : ModuleRules
+{
+    public KnucklesLiveLinkEditor(ReadOnlyTargetRules Target) : base(Target)
+    {
+		// TODO: Clean up dependencies
+		
+        PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+        
+        PrivateIncludePaths.Add(Path.Combine(ModuleDirectory, "Private"));
+
+        PublicDependencyModuleNames.AddRange(
+            new string[]
+            {
+                "Core",
+                "CoreUObject",
+                "UnrealEd",
+                "Engine",
+                "Projects",
+                "DetailCustomizations",
+                "OpenVR",
+                "KnucklesLiveLink",
+				"LiveLinkInterface",
+                "BlueprintGraph"
+            }
+            );
+            
+        
+        PrivateDependencyModuleNames.AddRange(
+            new string[]
+            {
+                "CoreUObject",
+                "Engine",
+                "Slate",
+                "SlateCore",
+                "WorkspaceMenuStructure",
+                "EditorStyle",
+                "SlateCore",
+                "Slate",
+                "InputCore"
+            }
+            );
+    }
+}
