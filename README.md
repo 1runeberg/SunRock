@@ -1,4 +1,4 @@
-# SUN ROCK (0.2 alpha)
+# SUN ROCK (0.5 beta)
 **UE4 LIVELINK &amp; INPUT SYSTEM PLUGIN FOR STEAMVR KNUCKLES**
 
 Includes a Livelink Plugin for SteamVR's new Knuckles Streaming Hand Skeletal Data System and a hook to the new Action Binding System to UE4's native Event System.
