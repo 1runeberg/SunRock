@@ -34,8 +34,7 @@ This demo project only works with UE4.21, SteamVR EV2 & EV3 Knuckles Hardware **
     
 **IMPORTANT: 
 1. If CVar vr.SteamVR.EnableVRInput = 1, KnucklesVRController will defer back to the original SteamVRController from the Engine.
-2. You MUST use Action and Axis Mappings in your project (see Section IV of the Instructions below)
-**<br /><br />
+2. You MUST use Action and Axis Mappings in your project (see Section IV of the Instructions below)**<br /><br />
 
 **II. Dependencies:** <br />
     * SteamVR Plugin<br />
