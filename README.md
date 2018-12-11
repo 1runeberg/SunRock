@@ -51,7 +51,7 @@ With the Livelink Runtime component, you can also use the Skeletal Hand Animatio
 **IV. Auto-Generation of SteamVRInput Bindings:** <br />
     The SteamVRController if active will auto-generate:<br />
         {ProjectDir}\Saved\Config\steamvr_actions.json (action manifest, Editor & Packaged)<br />
-        {ProjectDir}\Config\SteamVRBindings\\<ControllerType>.json (bindings file, Editor only)<br /><br />
+        {ProjectDir}\Config\SteamVRBindings\\{ControllerType}.json (bindings file, Editor only)<br /><br />
     
 If the bindings files already exists, they won't be overwritten. To regenerate new ones delete any existing binsind and action manifest files and restart the Engine.<br /><br />
 
