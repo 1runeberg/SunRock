@@ -32,9 +32,9 @@ This demo project only works with UE4.21, SteamVR EV2 & EV3 Knuckles Hardware **
     * KnucklesVRController BP Library - For static functions related to SteamVRInput (e.g. Triggering Haptics)<br />
     * KnucklesVRController - Reimplemented SteamVRController from UE4.21 to support Knuckles and automated new SteamVR Input Bindings generation.<br />
     
-**IMPORTANT: 
+**IMPORTANT:** 
 1. If CVar vr.SteamVR.EnableVRInput = 1, KnucklesVRController will defer back to the original SteamVRController from the Engine.
-2. You MUST use Action and Axis Mappings in your project (see Section IV of the Instructions below)**<br /><br />
+2. You MUST use Action and Axis Mappings in your project (see Section IV of the Instructions below)<br /><br />
 
 **II. Dependencies:** <br />
     * SteamVR Plugin<br />
