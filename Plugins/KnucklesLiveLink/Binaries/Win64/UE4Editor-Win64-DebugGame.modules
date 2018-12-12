@@ -1,9 +1,0 @@
-{
-	"BuildId": "4541578",
-	"Modules": 
-	{
-		"KnucklesLiveLink": "UE4Editor-KnucklesLiveLink-Win64-DebugGame.dll",
-		"KnucklesLiveLinkEditor": "UE4Editor-KnucklesLiveLinkEditor-Win64-DebugGame.dll",
-		"KnucklesVRController": "UE4Editor-KnucklesVRController-Win64-DebugGame.dll"
-	}
-}

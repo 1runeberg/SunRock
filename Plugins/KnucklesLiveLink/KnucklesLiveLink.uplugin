@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "0.5 SunRock Source Public Beta",
+	"VersionName": "0.5.1 SunRock Source Public Beta",
 	"FriendlyName": "Knuckles LiveLink and Input System",
 	"Description": "SteamVR Knuckles LiveLink and Input System Plugin by RunebergVR",
 	"Category": "Virtual Reality",

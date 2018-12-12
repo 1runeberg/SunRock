@@ -38,11 +38,9 @@
 # Precompiled Assets
 SourceArt/**/*.png
 SourceArt/**/*.tga
-# Binary Files - Do not ignore binaries in this repo for BP-Only Projects
-# Binaries/*
+# Plugin Binary Files - Do not ignore plugin binaries in this repo for BP-Only Projects
+Binaries/*
 Plugins/*/Binaries/*/*.pdb
-Binaries/*/*.pdb
-Binaries/*/*.exe
 # Builds
 Build/*
 # Whitelist PakBlacklist-<BuildConfiguration>.txt files

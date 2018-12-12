@@ -139,44 +139,44 @@
 					}
 				},
 				{
-					"mode": "trigger",
+					"mode": "force_sensor",
 					"path": "/user/hand/left/input/grip",
 					"inputs":
 					{
-						"pull":
+						"force":
 						{
 							"output": "/actions/main/in/GripForce (Left)_axis"
 						}
 					}
 				},
 				{
-					"mode": "trigger",
+					"mode": "force_sensor",
 					"path": "/user/hand/left/input/grip",
 					"inputs":
 					{
-						"pull":
+						"force":
 						{
 							"output": "/actions/main/in/GripForce (Left)_axis"
 						}
 					}
 				},
 				{
-					"mode": "trigger",
+					"mode": "force_sensor",
 					"path": "/user/hand/right/input/grip",
 					"inputs":
 					{
-						"pull":
+						"force":
 						{
 							"output": "/actions/main/in/GripForce (Right)_axis"
 						}
 					}
 				},
 				{
-					"mode": "trigger",
+					"mode": "force_sensor",
 					"path": "/user/hand/right/input/grip",
 					"inputs":
 					{
-						"pull":
+						"force":
 						{
 							"output": "/actions/main/in/GripForce (Right)_axis"
 						}

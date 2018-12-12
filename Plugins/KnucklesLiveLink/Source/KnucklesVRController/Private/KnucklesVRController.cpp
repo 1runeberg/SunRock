@@ -232,24 +232,22 @@ struct FSteamVRAction
 
 };
 
-namespace KnucklesVRControllerKeyNames
-{
-	const FGamepadKeyNames::Type Touch0("Steam_Touch_0");
-	const FGamepadKeyNames::Type Touch1("Steam_Touch_1");
-	const FGamepadKeyNames::Type GenericGrip("Steam_Generic_Grip");
-	const FGamepadKeyNames::Type GenericTrigger("Steam_Generic_Trigger");
-	const FGamepadKeyNames::Type GenericTouchpad("Steam_Generic_Touchpad");
-	const FGamepadKeyNames::Type GenericMenu("Steam_Generic_Menu");
-	const FGamepadKeyNames::Type GenericSystem("Steam_Generic_System");
-
-	const FGamepadKeyNames::Type SteamVR_Knuckles_Left_Trackpad_X("Knuckles_VR_Left_Trackpad_X");
-	const FGamepadKeyNames::Type SteamVR_Knuckles_Right_Trackpad_X("Knuckles_VR_Right_Trackpad_X");
-	const FGamepadKeyNames::Type SteamVR_Knuckles_Left_Trackpad_Y("Knuckles_VR_Left_Trackpad_Y");
-	const FGamepadKeyNames::Type SteamVR_Knuckles_Right_Trackpad_Y("Knuckles_VR_Right_Trackpad_Y");
-}
-
 namespace KnucklesVRControllerKeys
 {
+	const FKey SteamVR_Knuckles_Left_A_CapSense("Knuckles_Left_A_CapSense");
+	const FKey SteamVR_Knuckles_Right_A_CapSense("Knuckles_Right_A_CapSense");
+	const FKey SteamVR_Knuckles_Left_B_CapSense("Knuckles_Left_B_CapSense");
+	const FKey SteamVR_Knuckles_Right_B_CapSense("Knuckles_Right_B_CapSense");
+
+	const FKey SteamVR_Knuckles_Left_Trigger_CapSense("Knuckles_L_Trigger_CapSense");
+	const FKey SteamVR_Knuckles_Right_Trigger_CapSense("Knuckles_R_Trigger_CapSense");
+
+	const FKey SteamVR_Knuckles_Left_Thumbstick_CapSense("Knuckles_L_Thumbstick_CapSense");
+	const FKey SteamVR_Knuckles_Right_Thumbstick_CapSense("Knuckles_R_Thumbstick_CapSense");
+
+	const FKey SteamVR_Knuckles_Left_Trackpad_CapSense("Knuckles_L_Trackpad_CapSense");
+	const FKey SteamVR_Knuckles_Right_Trackpad_CapSense("Knuckles_R_Trackpad_CapSense");
+
 	const FKey SteamVR_Knuckles_Left_Trackpad_X("Knuckles_Left_Trackpad_X");
 	const FKey SteamVR_Knuckles_Right_Trackpad_X("Knuckles_Right_Trackpad_X");
 	const FKey SteamVR_Knuckles_Left_Trackpad_Y("Knuckles_Left_Trackpad_Y");
@@ -365,8 +363,23 @@ public:
 	{
 		if (bEnableVRInput)
 		{
-			// Adding Knuckles Trackpad here as it is not available as an abstracted input in current Engine implementation
+			// Adding additional Knuckles buttons here as it is not available as an abstracted input in current Engine implementation
 			// This will NOT emit any axes info for performance reasons, they MUST be mapped in the Axis Mappings via the UE & SteamInput System
+			// Bindings however are auto-generated if they do not exist
+			EKeys::AddKey(FKeyDetails(KnucklesVRControllerKeys::SteamVR_Knuckles_Left_A_CapSense, LOCTEXT("Knuckles_Left_A_CapSense", "SteamVR Knuckles (L) A CapSense"), FKeyDetails::GamepadKey));
+			EKeys::AddKey(FKeyDetails(KnucklesVRControllerKeys::SteamVR_Knuckles_Right_A_CapSense, LOCTEXT("Knuckles_Right_A_CapSense", "SteamVR Knuckles (R) A CapSense"), FKeyDetails::GamepadKey));
+			EKeys::AddKey(FKeyDetails(KnucklesVRControllerKeys::SteamVR_Knuckles_Left_B_CapSense, LOCTEXT("Knuckles_Left_B_CapSense", "SteamVR Knuckles (L) B CapSense"), FKeyDetails::GamepadKey));
+			EKeys::AddKey(FKeyDetails(KnucklesVRControllerKeys::SteamVR_Knuckles_Right_B_CapSense, LOCTEXT("Knuckles_Right_B_CapSense", "SteamVR Knuckles (R) B CapSense"), FKeyDetails::GamepadKey));
+
+			EKeys::AddKey(FKeyDetails(KnucklesVRControllerKeys::SteamVR_Knuckles_Left_Trigger_CapSense, LOCTEXT("Knuckles_L_Trigger_CapSense", "SteamVR Knuckles (L) Trigger CapSense"), FKeyDetails::GamepadKey));
+			EKeys::AddKey(FKeyDetails(KnucklesVRControllerKeys::SteamVR_Knuckles_Right_Trigger_CapSense, LOCTEXT("Knuckles_R_Trigger_CapSense", "SteamVR Knuckles (R) Trigger CapSense"), FKeyDetails::GamepadKey));
+
+			EKeys::AddKey(FKeyDetails(KnucklesVRControllerKeys::SteamVR_Knuckles_Left_Thumbstick_CapSense, LOCTEXT("Knuckles_L_Thumbstick_CapSense", "SteamVR Knuckles (L) Thumbstick CapSense"), FKeyDetails::GamepadKey));
+			EKeys::AddKey(FKeyDetails(KnucklesVRControllerKeys::SteamVR_Knuckles_Right_Thumbstick_CapSense, LOCTEXT("Knuckles_R_Thumbstick_CapSense", "SteamVR Knuckles (R) Thumbstick CapSense"), FKeyDetails::GamepadKey));
+
+			EKeys::AddKey(FKeyDetails(KnucklesVRControllerKeys::SteamVR_Knuckles_Left_Trackpad_CapSense, LOCTEXT("Knuckles_L_Trackpad_CapSense", "SteamVR Knuckles (L) Trackpad CapSense"), FKeyDetails::GamepadKey));
+			EKeys::AddKey(FKeyDetails(KnucklesVRControllerKeys::SteamVR_Knuckles_Right_Trackpad_CapSense, LOCTEXT("Knuckles_R_Trackpad_CapSense", "SteamVR Knuckles (R) Trackpad CapSense"), FKeyDetails::GamepadKey));
+
 			EKeys::AddKey(FKeyDetails(KnucklesVRControllerKeys::SteamVR_Knuckles_Left_Trackpad_X, LOCTEXT("Knuckles_Left_Trackpad_X", "SteamVR Knuckles (L) Trackpad X"), FKeyDetails::GamepadKey | FKeyDetails::FloatAxis));
 			EKeys::AddKey(FKeyDetails(KnucklesVRControllerKeys::SteamVR_Knuckles_Right_Trackpad_X, LOCTEXT("Knuckles_Right_Trackpad_X", "SteamVR Knuckles (R) Trackpad X"), FKeyDetails::GamepadKey | FKeyDetails::FloatAxis));
 			EKeys::AddKey(FKeyDetails(KnucklesVRControllerKeys::SteamVR_Knuckles_Left_Trackpad_Y, LOCTEXT("Knuckles_Left_Trackpad_Y", "SteamVR Knuckles (L) Trackpad Y"), FKeyDetails::GamepadKey | FKeyDetails::FloatAxis));
@@ -1136,6 +1149,7 @@ private:
 				bool bIsThumbstick;
 				bool bIsTrackpad;
 				bool bIsGrip;
+				bool bIsCapSense;
 				bool bIsLeft;
 				bool bIsFaceButton1;   // TODO: Better way of abstracting buttons
 				bool bIsFaceButton2;
@@ -1149,6 +1163,7 @@ private:
 					InInputMapping[i].InputKey.ToString().Contains(TEXT("Thumbstick_Y"), ESearchCase::CaseSensitive, ESearchDir::FromEnd) ||
 					InInputMapping[i].InputKey.ToString().Contains(TEXT("Trackpad_X"), ESearchCase::CaseSensitive, ESearchDir::FromEnd) ||
 					InInputMapping[i].InputKey.ToString().Contains(TEXT("Trackpad_Y"), ESearchCase::CaseSensitive, ESearchDir::FromEnd) ||
+					InInputMapping[i].InputKey.ToString().Contains(TEXT("Grip"), ESearchCase::CaseSensitive, ESearchDir::FromEnd) ||
 					InInputMapping[i].InputKey.ToString().Contains(TEXT("Axis"), ESearchCase::CaseSensitive, ESearchDir::FromEnd))
 				{
 					bIsAxis = true;
@@ -1162,12 +1177,14 @@ private:
 				bIsThumbstick = InInputMapping[i].InputKey.ToString().Contains(TEXT("Thumbstick"), ESearchCase::CaseSensitive, ESearchDir::FromEnd);
 				bIsTrackpad = InInputMapping[i].InputKey.ToString().Contains(TEXT("Trackpad"), ESearchCase::CaseSensitive, ESearchDir::FromEnd);
 				bIsGrip = InInputMapping[i].InputKey.ToString().Contains(TEXT("Grip"), ESearchCase::CaseSensitive, ESearchDir::FromEnd);
+				bIsCapSense = InInputMapping[i].InputKey.ToString().Contains(TEXT("CapSense"), ESearchCase::CaseSensitive, ESearchDir::FromEnd);
 				bIsLeft = InInputMapping[i].InputKey.ToString().Contains(TEXT("Left"), ESearchCase::CaseSensitive, ESearchDir::FromEnd);
 				bIsFaceButton1 = InInputMapping[i].InputKey.ToString().Contains(TEXT("FaceButton1"), ESearchCase::CaseSensitive, ESearchDir::FromEnd);
 				bIsFaceButton2 = InInputMapping[i].InputKey.ToString().Contains(TEXT("FaceButton2"), ESearchCase::CaseSensitive, ESearchDir::FromEnd);
 
 				// Set Cache Mode
 				CacheMode = bIsTrigger || bIsGrip ? FName(TEXT("trigger")) : FName(TEXT("button"));
+				CacheMode = bIsGrip ? FName(TEXT("force_sensor")) : CacheMode;
 				CacheMode = bIsThumbstick ? FName(TEXT("joystick")) : CacheMode;
 				CacheMode = bIsTrackpad ? FName(TEXT("trackpad")) : CacheMode;
 
@@ -1217,10 +1234,11 @@ private:
 					if (bIsAxis)
 					{
 						CacheType = (bIsThumbstick || bIsTrackpad) ? FString(TEXT("position")) : FString(TEXT("pull"));
+						CacheType = (bIsGrip) ? FString(TEXT("force")) : CacheType;
 					}
 					else
 					{
-					CacheType = FString(TEXT("click"));
+						CacheType = (bIsCapSense) ? FString(TEXT("touch")) : FString(TEXT("click"));
 					}
 
 					// Set Action Input Type
@@ -1490,6 +1508,7 @@ private:
 
 						if (AxisNameY != NAME_None)
 						{
+							AxisMappings.Empty();
 							InputSettings->GetAxisMappingByName(AxisNameY, AxisMappings);
 							for (FInputAxisKeyMapping AxisMapping : AxisMappings)
 							{
