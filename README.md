@@ -5,6 +5,9 @@ Includes a Livelink Plugin for SteamVR's new Knuckles Streaming Hand Skeletal Da
 
 This demo project only works with UE4.21, SteamVR EV2 & EV3 Knuckles Hardware **AND** Steam **MUST** be running.
 
+For a "plugin only" project for use as a submodule in your projects, use this repo:
+https://github.com/1runeberg/KnucklesLiveLink
+
 ## Preview Video:
 
 [![KNUCKLES UE4 PLUGIN](http://img.youtube.com/vi/DDu5W_b88N0/0.jpg)](http://www.youtube.com/watch?v=DDu5W_b88N0 "Knuckles UE4 Plugin Overview")
