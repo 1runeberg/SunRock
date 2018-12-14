@@ -181,6 +181,28 @@
 							"output": "/actions/main/in/GripForce (Right)_axis"
 						}
 					}
+				},
+				{
+					"mode": "force_sensor",
+					"path": "/user/hand/left/input/trackpad",
+					"inputs":
+					{
+						"force":
+						{
+							"output": "/actions/main/in/ThumbGrip (Left)_axis"
+						}
+					}
+				},
+				{
+					"mode": "force_sensor",
+					"path": "/user/hand/right/input/trackpad",
+					"inputs":
+					{
+						"force":
+						{
+							"output": "/actions/main/in/ThumbGrip (Right)_axis"
+						}
+					}
 				}
 			],
 			"skeleton": [
@@ -205,5 +227,5 @@
 			]
 		}
 	},
-	"description": "UE4 Generated Bindings"
+	"description": "SunRock"
 }
