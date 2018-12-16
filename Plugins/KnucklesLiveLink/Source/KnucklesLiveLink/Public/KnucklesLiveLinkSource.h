@@ -75,8 +75,10 @@ class KNUCKLESLIVELINK_API FKnucklesLiveLinkSource : public ILiveLinkSource
 public:
 
 	FKnucklesLiveLinkSource();
-
 	virtual ~FKnucklesLiveLinkSource();
+
+	// Check if Knuckles Controllers are present
+	void CheckForKnuckles();
 
 	// Begin ILiveLinkSource Interface
 	virtual void ReceiveClient(ILiveLinkClient* InClient, FGuid InSourceGuid) override;

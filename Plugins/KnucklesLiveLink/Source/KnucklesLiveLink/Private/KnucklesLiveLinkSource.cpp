@@ -59,9 +59,7 @@ FKnucklesLiveLinkSource::FKnucklesLiveLinkSource()
 	{
 		UE_LOG(LogKnucklesLivelinkSource, Display, TEXT("[KNUCKLES LIVELINK] SteamVR runtime initialised with status: %s"), *FString(VR_GetVRInitErrorAsEnglishDescription(SteamVRError)));
 
-		// List Tracked Devices
-		UE_LOG(LogKnucklesLivelinkSource, Display, TEXT("[KNUCKLES LIVELINK] Checking for tracked devices..."));
-		for (unsigned int id = 0; id < k_unMaxTrackedDeviceCount; id++) 
+		for (unsigned int id = 0; id < k_unMaxTrackedDeviceCount; ++id)
 		{
 			ETrackedDeviceClass trackedDeviceClass = SteamVRSystem->GetTrackedDeviceClass(id);
 			char buf[32];
@@ -71,77 +69,39 @@ FKnucklesLiveLinkSource::FKnucklesLiveLinkSource()
 				uint32 StringBytes = SteamVRSystem->GetStringTrackedDeviceProperty(id, ETrackedDeviceProperty::Prop_ModelNumber_String, buf, sizeof(buf));
 				FString stringCache = *FString(UTF8_TO_TCHAR(buf));
 				UE_LOG(LogKnucklesLivelinkSource, Display, TEXT("[KNUCKLES LIVELINK] Found the following device: [%i] %s"), id, *stringCache);
-
-				// Check if Knuckles is present and active
-				if (stringCache.Contains(FString(TEXT("Knuckles"))) && stringCache.Contains(FString(TEXT("Left"))))
-				{
-					KnucklesControllerIdLeft = id;
-
-					if (SteamVRSystem->IsTrackedDeviceConnected(KnucklesControllerIdLeft))
-					{
-						bLeftKnucklesPresent = true;
-						UE_LOG(LogKnucklesLivelinkSource, Warning, TEXT("[KNUCKLES LIVELINK] Knuckles Left found and is ACTIVE"));
-					}
-				}
-				else if (stringCache.Contains(FString(TEXT("Knuckles"))) && stringCache.Contains(FString(TEXT("Right"))))
-				{
-					KnucklesControllerIdRight = id;
-
-					if (SteamVRSystem->IsTrackedDeviceConnected(KnucklesControllerIdRight))
-					{
-						bRightKnucklesPresent = true;
-						UE_LOG(LogKnucklesLivelinkSource, Warning, TEXT("[KNUCKLES LIVELINK] Knuckles Right found and is ACTIVE"));
-					}
-				}
 			}
 		}
 
-		// INTENTIONAL BREAK (WORKAROUND SteamVR Bug 1.2.1b / 1.1.4)
-		// TODO: Hack to workaround SteamVR Bug where Knuckles aren't detectable when a build is running
-		// in a different directory as Steam.
-		bLeftKnucklesPresent = true;
-		bRightKnucklesPresent = true;
+		// Set action manifest path
+		const FString ActionManifestPath = FFileManagerGeneric::Get().ConvertToAbsolutePathForExternalAppForRead(*(FPaths::GeneratedConfigDir() / TEXT("steamvr_actions.json")));
+		UE_LOG(LogKnucklesLivelinkSource, Display, TEXT("[KNUCKLES LIVELINK] Action Manifest Path is [%s]  "), *ActionManifestPath);
 
-		// Check if we have Knuckles Connected to the System
-		if (!bLeftKnucklesPresent && !bRightKnucklesPresent)
-		{
-			bSteamVRPresent = false;
-			UE_LOG(LogKnucklesLivelinkSource, Error, TEXT("[KNUCKLES LIVELINK] No Knuckles Controllers Found!"));
-			return;
-		}
-		else
-		{
-			// Set action manifest path
-			const FString ActionManifestPath = FFileManagerGeneric::Get().ConvertToAbsolutePathForExternalAppForRead(*(FPaths::GeneratedConfigDir() / TEXT("steamvr_actions.json")));
-			UE_LOG(LogKnucklesLivelinkSource, Display, TEXT("[KNUCKLES LIVELINK] Action Manifest Path is [%s]  "), *ActionManifestPath);
+		EVRInputError inputError = VRInput()->SetActionManifestPath(TCHAR_TO_UTF8(*ActionManifestPath));
+		GetInputError(inputError, FString(TEXT("Setting Action Manifest Path Result")));
 
-			EVRInputError inputError = VRInput()->SetActionManifestPath(TCHAR_TO_UTF8(*ActionManifestPath));
-			GetInputError(inputError, FString(TEXT("Setting Action Manifest Path Result")));
+		// TODO: Action set path from manifest instead of a hardcode
+		// Set Action Handles for Skeletal Data - REQUIRED!
+		inputError = VRInput()->GetActionHandle(TCHAR_TO_UTF8(*FString(TEXT("/actions/main/in/SkeletonLeft"))), &SteamVRSkeletonLeft);
+		GetInputError(inputError, FString(TEXT("Retrieveng Skeletal Action Handle (Left) Result")));
 
-			// TODO: Action set path from manifest instead of a hardcode
-			// Set Action Handles for Skeletal Data - REQUIRED!
-			inputError = VRInput()->GetActionHandle(TCHAR_TO_UTF8(*FString(TEXT("/actions/main/in/SkeletonLeft"))), &SteamVRSkeletonLeft);
-			GetInputError(inputError, FString(TEXT("Retrieveng Skeletal Action Handle (Left) Result")));
+		inputError = VRInput()->GetActionHandle(TCHAR_TO_UTF8(*FString(TEXT("/actions/main/in/SkeletonRight"))), &SteamVRSkeletonRight);
+		if (inputError != vr::VRInputError_None)
+		GetInputError(inputError, FString(TEXT("Retrieveng Skeletal Action Handle (Left) Result")));
 
-			inputError = VRInput()->GetActionHandle(TCHAR_TO_UTF8(*FString(TEXT("/actions/main/in/SkeletonRight"))), &SteamVRSkeletonRight);
-			if (inputError != vr::VRInputError_None)
-			GetInputError(inputError, FString(TEXT("Retrieveng Skeletal Action Handle (Left) Result")));
+		// Set Action Set Handles
+		inputError = VRInput()->GetActionSetHandle("/actions/main", &SteamVRActionSetDefault);
+		GetInputError(inputError, FString(TEXT("Retrieveng Skeletal Action Set Handle Result")));
 
-			// Set Action Set Handles
-			inputError = VRInput()->GetActionSetHandle("/actions/main", &SteamVRActionSetDefault);
-			GetInputError(inputError, FString(TEXT("Retrieveng Skeletal Action Set Handle Result")));
+		// Get Input Source
+		inputError = VRInput()->GetInputSourceHandle(TCHAR_TO_UTF8(*FString(TEXT("/user/hand/left"))), &SteamActiveOriginLeft);
+		GetInputError(inputError, FString(TEXT("Retrieveng Input Source Handle (Left) Result: ")));
 
-			// Get Input Source
-			inputError = VRInput()->GetInputSourceHandle(TCHAR_TO_UTF8(*FString(TEXT("/user/hand/left"))), &SteamActiveOriginLeft);
-			GetInputError(inputError, FString(TEXT("Retrieveng Input Source Handle (Left) Result: ")));
+		inputError = VRInput()->GetInputSourceHandle(TCHAR_TO_UTF8(*FString(TEXT("/user/hand/right"))), &SteamActiveOriginRight);
+		if (inputError == EVRInputError::VRInputError_None)
+		GetInputError(inputError, FString(TEXT("Retrieveng Input Source Handle (Right) Result")));
 
-			inputError = VRInput()->GetInputSourceHandle(TCHAR_TO_UTF8(*FString(TEXT("/user/hand/right"))), &SteamActiveOriginRight);
-			if (inputError == EVRInputError::VRInputError_None)
-			GetInputError(inputError, FString(TEXT("Retrieveng Input Source Handle (Right) Result")));
-
-			// Set SteamVR Status
-			bSteamVRPresent = true;
-		}
+		// Set SteamVR Status
+		bSteamVRPresent = true;
 	}
 
 	// Setup Knuckles Bones
@@ -235,10 +195,53 @@ bool FKnucklesLiveLinkSource::Tick(float DeltaTime)
 {
 	if (bSteamVRPresent)
 	{
+		CheckForKnuckles();	// TODO: TimerDelegate may be more efficient for runtime changes, per 1 sec perhaps
 		UpdateLiveLink();
 	}
 
 	return true;
+}
+
+void FKnucklesLiveLinkSource::CheckForKnuckles()
+{
+	for (unsigned int id = 0; id < k_unMaxTrackedDeviceCount; ++id)
+	{
+		ETrackedDeviceClass trackedDeviceClass = SteamVRSystem->GetTrackedDeviceClass(id);
+		char buf[32];
+
+		if (SteamVRSystem && trackedDeviceClass == ETrackedDeviceClass::TrackedDeviceClass_Controller)
+		{
+			uint32 StringBytes = SteamVRSystem->GetStringTrackedDeviceProperty(id, ETrackedDeviceProperty::Prop_ModelNumber_String, buf, sizeof(buf));
+			FString stringCache = *FString(UTF8_TO_TCHAR(buf));
+			//UE_LOG(LogKnucklesLivelinkSource, Display, TEXT("[KNUCKLES LIVELINK] Found the following device: [%i] %s"), id, *stringCache);
+
+			// Check if Knuckles is present and active
+			if (stringCache.Contains(FString(TEXT("Knuckles"))) && 
+				SteamVRSystem->GetControllerRoleForTrackedDeviceIndex(id) == ETrackedControllerRole::TrackedControllerRole_LeftHand
+				)
+			{
+				KnucklesControllerIdLeft = id;
+
+				if (SteamVRSystem->IsTrackedDeviceConnected(KnucklesControllerIdLeft))
+				{
+					bLeftKnucklesPresent = true;
+					//UE_LOG(LogKnucklesLivelinkSource, Warning, TEXT("[KNUCKLES LIVELINK] Knuckles Left found and is ACTIVE"));
+				}
+			}
+			else if (stringCache.Contains(FString(TEXT("Knuckles"))) && 
+				SteamVRSystem->GetControllerRoleForTrackedDeviceIndex(id) == ETrackedControllerRole::TrackedControllerRole_RightHand
+				)
+			{
+				KnucklesControllerIdRight = id;
+
+				if (SteamVRSystem->IsTrackedDeviceConnected(KnucklesControllerIdRight))
+				{
+					bRightKnucklesPresent = true;
+					//UE_LOG(LogKnucklesLivelinkSource, Warning, TEXT("[KNUCKLES LIVELINK] Knuckles Right found and is ACTIVE"));
+				}
+			}
+		}
+	}
 }
 
 void FKnucklesLiveLinkSource::ReceiveClient(ILiveLinkClient* InClient, FGuid InSourceGuid)
