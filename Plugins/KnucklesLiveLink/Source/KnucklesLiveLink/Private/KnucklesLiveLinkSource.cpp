@@ -96,6 +96,12 @@ FKnucklesLiveLinkSource::FKnucklesLiveLinkSource()
 			}
 		}
 
+		// INTENTIONAL BREAK (WORKAROUND SteamVR Bug 1.2.1b / 1.1.4)
+		// TODO: Hack to workaround SteamVR Bug where Knuckles aren't detectable when a build is running
+		// in a different directory as Steam.
+		bLeftKnucklesPresent = true;
+		bRightKnucklesPresent = true;
+
 		// Check if we have Knuckles Connected to the System
 		if (!bLeftKnucklesPresent && !bRightKnucklesPresent)
 		{
