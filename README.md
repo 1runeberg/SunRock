@@ -1,9 +1,7 @@
 # SUN ROCK (0.5 beta)
 **ADVANCED STEAMVR INPUT SUPPORT FOR UE4.21**
 
-Includes a Livelink Plugin for SteamVR's new Knuckles Streaming Hand Skeletal Data System and a hook to the new Action Binding System to UE4's native Event System.
-
-This demo project only works with UE4.21, SteamVR EV2 & EV3 Knuckles Hardware **AND** Steam **MUST** be running.
+Includes a Livelink Plugin for SteamVR's new Knuckles Streaming Hand Skeletal Data System and autogenerates Controller Input Profile binding files.
 
 For a "plugin only" project for use as a submodule in your projects, use this repo:
 https://github.com/1runeberg/KnucklesLiveLink
