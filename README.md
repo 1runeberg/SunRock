@@ -10,7 +10,7 @@ https://github.com/1runeberg/KnucklesLiveLink
 
 ## Preview Video:
 
-[![KNUCKLES UE4 PLUGIN](http://img.youtube.com/vi/DDu5W_b88N0/0.jpg)](http://www.youtube.com/watch?v=DDu5W_b88N0 "Knuckles UE4 Plugin Overview")
+[![KNUCKLES UE4 PLUGIN](http://img.youtube.com/vi/OBLxaObZBaY/0.jpg)](http://www.youtube.com/watch?v=OBLxaObZBaY "Knuckles UE4 Plugin Overview")
 
 
 **Release Notes**
