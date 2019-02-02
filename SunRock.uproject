@@ -18,6 +18,10 @@
 		{
 			"Name": "ApexDestruction",
 			"Enabled": true
+		},
+		{
+			"Name": "KnucklesLiveLink",
+			"Enabled": true
 		}
 	],
 	"TargetPlatforms": [

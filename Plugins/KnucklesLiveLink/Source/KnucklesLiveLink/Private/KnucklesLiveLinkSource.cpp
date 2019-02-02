@@ -291,8 +291,8 @@ void FKnucklesLiveLinkSource::UpdateLiveLink()
 
 			// TODO: Check for active data first!
 			// Get Skeletal Bone Data
-			inputError = VRInput()->GetSkeletalBoneData(SteamVRSkeletonRight, VRSkeletalTransformSpace_Parent, MotionRangeLeft, vrBoneTransformRight, BoneCount, k_ulInvalidInputValueHandle);
-			inputError = VRInput()->GetSkeletalBoneData(SteamVRSkeletonLeft, VRSkeletalTransformSpace_Parent, MotionRangeRight, vrBoneTransformLeft, BoneCount, k_ulInvalidInputValueHandle);
+			inputError = VRInput()->GetSkeletalBoneData(SteamVRSkeletonRight, VRSkeletalTransformSpace_Parent, MotionRangeLeft, vrBoneTransformRight, BoneCount);
+			inputError = VRInput()->GetSkeletalBoneData(SteamVRSkeletonLeft, VRSkeletalTransformSpace_Parent, MotionRangeRight, vrBoneTransformLeft, BoneCount);
 
 			TArray<FTransform> BoneTransforms;
 			TArray<FTransform> UEBoneTransformsLeft;

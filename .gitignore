@@ -40,7 +40,7 @@ SourceArt/**/*.png
 SourceArt/**/*.tga
 # Plugin Binary Files - Do not ignore plugin binaries in this repo for BP-Only Projects
 Binaries/*
-Plugins/*/Binaries/*/*.pdb
+
 # Builds
 Build/*
 # Whitelist PakBlacklist-<BuildConfiguration>.txt files

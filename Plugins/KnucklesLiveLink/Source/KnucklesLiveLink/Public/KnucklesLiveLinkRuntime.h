@@ -47,13 +47,13 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category="Knuckles")
 	bool ConnectToKnucklesSource(bool GetKnucklesSkelAnim = true, bool LeftWithController = false, bool RightWithController = false);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category = "Knuckles")
 	void CleanupKnucklesSource();
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category = "Knuckles")
 	void PlayKnucklesHapticFeedback(bool VibrateLeft, float StartSecondsFromNow, float DurationSeconds = 1.f, 
 		float Frequency = 1.f, float Amplitude = 0.5f);
 

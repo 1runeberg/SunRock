@@ -25,11 +25,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #pragma once
 
 #include "Widgets/SCompoundWidget.h"
-#include "SListView.h"
+#include "Widgets/Views/SListView.h"
 #include "IMessageContext.h"
 #include "MessageEndpoint.h"
 #include "Widgets/DeclarativeSyntaxSupport.h"
-#include "Guid.h"
+#include "Misc/Guid.h"
 
 class SKnucklesLiveLinkSourceEditor : public SCompoundWidget
 {

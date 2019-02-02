@@ -37,8 +37,7 @@ class KNUCKLESVRCONTROLLER_API UKnucklesFunctionLibrary : public UBlueprintFunct
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category = "Knuckles")
 	static void PlaySteamVR_HapticFeedback(bool VibrateLeft, float StartSecondsFromNow, float DurationSeconds = 1.f,
 			float Frequency = 1.f, float Amplitude = 0.5f);
-
 };
