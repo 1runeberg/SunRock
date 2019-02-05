@@ -195,53 +195,10 @@ bool FKnucklesLiveLinkSource::Tick(float DeltaTime)
 {
 	if (bSteamVRPresent)
 	{
-		CheckForKnuckles();	// TODO: TimerDelegate may be more efficient for runtime changes, per 1 sec perhaps
 		UpdateLiveLink();
 	}
 
 	return true;
-}
-
-void FKnucklesLiveLinkSource::CheckForKnuckles()
-{
-	for (unsigned int id = 0; id < k_unMaxTrackedDeviceCount; ++id)
-	{
-		ETrackedDeviceClass trackedDeviceClass = SteamVRSystem->GetTrackedDeviceClass(id);
-		char buf[32];
-
-		if (SteamVRSystem && trackedDeviceClass == ETrackedDeviceClass::TrackedDeviceClass_Controller)
-		{
-			uint32 StringBytes = SteamVRSystem->GetStringTrackedDeviceProperty(id, ETrackedDeviceProperty::Prop_ModelNumber_String, buf, sizeof(buf));
-			FString stringCache = *FString(UTF8_TO_TCHAR(buf));
-			//UE_LOG(LogKnucklesLivelinkSource, Display, TEXT("[KNUCKLES LIVELINK] Found the following device: [%i] %s"), id, *stringCache);
-
-			// Check if Knuckles is present and active
-			if (stringCache.Contains(FString(TEXT("Knuckles"))) && 
-				SteamVRSystem->GetControllerRoleForTrackedDeviceIndex(id) == ETrackedControllerRole::TrackedControllerRole_LeftHand
-				)
-			{
-				KnucklesControllerIdLeft = id;
-
-				if (SteamVRSystem->IsTrackedDeviceConnected(KnucklesControllerIdLeft))
-				{
-					bLeftKnucklesPresent = true;
-					//UE_LOG(LogKnucklesLivelinkSource, Warning, TEXT("[KNUCKLES LIVELINK] Knuckles Left found and is ACTIVE"));
-				}
-			}
-			else if (stringCache.Contains(FString(TEXT("Knuckles"))) && 
-				SteamVRSystem->GetControllerRoleForTrackedDeviceIndex(id) == ETrackedControllerRole::TrackedControllerRole_RightHand
-				)
-			{
-				KnucklesControllerIdRight = id;
-
-				if (SteamVRSystem->IsTrackedDeviceConnected(KnucklesControllerIdRight))
-				{
-					bRightKnucklesPresent = true;
-					//UE_LOG(LogKnucklesLivelinkSource, Warning, TEXT("[KNUCKLES LIVELINK] Knuckles Right found and is ACTIVE"));
-				}
-			}
-		}
-	}
 }
 
 void FKnucklesLiveLinkSource::ReceiveClient(ILiveLinkClient* InClient, FGuid InSourceGuid)
@@ -261,7 +218,6 @@ bool FKnucklesLiveLinkSource::RequestSourceShutdown()
 	LiveLinkSourceGuid.Invalidate();
 	return true;
 }
-
 
 void FKnucklesLiveLinkSource::UpdateLiveLink()
 {
@@ -283,6 +239,8 @@ void FKnucklesLiveLinkSource::UpdateLiveLink()
 		actionSet[0].ulRestrictedToDevice = k_ulInvalidInputValueHandle;
 
 		EVRInputError inputError = vr::VRInput()->UpdateActionState(actionSet, sizeof(actionSet[0]), 1);
+		CheckForSkeletalController();
+
 		if (inputError == EVRInputError::VRInputError_None)
 		{
 			// Get Motion Range
@@ -291,17 +249,27 @@ void FKnucklesLiveLinkSource::UpdateLiveLink()
 
 			// TODO: Check for active data first!
 			// Get Skeletal Bone Data
-			inputError = VRInput()->GetSkeletalBoneData(SteamVRSkeletonRight, VRSkeletalTransformSpace_Parent, MotionRangeLeft, vrBoneTransformRight, BoneCount);
-			inputError = VRInput()->GetSkeletalBoneData(SteamVRSkeletonLeft, VRSkeletalTransformSpace_Parent, MotionRangeRight, vrBoneTransformLeft, BoneCount);
+			if (bLeftKnucklesPresent)
+			{
+				VRInput()->GetSkeletalBoneData(SteamVRSkeletonLeft, VRSkeletalTransformSpace_Parent, MotionRangeLeft, vrBoneTransformLeft, BoneCount);
+			}
+			else
+			{
+				VRInput()->GetSkeletalReferenceTransforms(SteamVRSkeletonLeft, VRSkeletalTransformSpace_Parent, EVRSkeletalReferencePose::VRSkeletalReferencePose_BindPose, vrBoneTransformLeft, BoneCount);
+			}
+
+			if (bRightKnucklesPresent)
+			{
+				VRInput()->GetSkeletalBoneData(SteamVRSkeletonRight, VRSkeletalTransformSpace_Parent, MotionRangeRight, vrBoneTransformRight, BoneCount);
+			}
+			else
+			{
+				VRInput()->GetSkeletalReferenceTransforms(SteamVRSkeletonRight, VRSkeletalTransformSpace_Parent, EVRSkeletalReferencePose::VRSkeletalReferencePose_BindPose, vrBoneTransformRight, BoneCount);
+			}
 
 			TArray<FTransform> BoneTransforms;
 			TArray<FTransform> UEBoneTransformsLeft;
 			TArray<FTransform> UEBoneTransformsRight;
-
-			// TODO: Remove HACK
-			//       Option 1: Get Base Pose values when it becomes available
-			//       Option 2: Move base pose values here to an external json file
-			//		 Option 3: Check with animator/specialist
 
 			// Root (Right)
 			BoneTransforms.Add(FTransform(
@@ -418,10 +386,66 @@ void FKnucklesLiveLinkSource::UpdateLiveLink()
 		}
 		else
 		{
-			GetInputError(inputError, FString(TEXT("Action State Update Frame Result")));
+			GetInputError(inputError, FString(TEXT("[KNUCKLES LIVELINK] Action State Update Frame Result")));
 		}
 	}
 
+}
+
+void FKnucklesLiveLinkSource::CheckForSkeletalController()
+{
+	KnucklesControllerIdLeft = -1;
+	bLeftKnucklesPresent = false;
+
+	KnucklesControllerIdRight = -1;
+	bRightKnucklesPresent = false;
+
+	for (unsigned int id = 0; id < k_unMaxTrackedDeviceCount; ++id)
+	{
+		// Check if this is a controller
+		ETrackedDeviceClass trackedDeviceClass = SteamVRSystem->GetTrackedDeviceClass(id);
+
+		if (SteamVRSystem && trackedDeviceClass == ETrackedDeviceClass::TrackedDeviceClass_Controller)
+		{
+			//uint32 StringBytes = SteamVRSystem->GetStringTrackedDeviceProperty(id, ETrackedDeviceProperty::Prop_ModelNumber_String, buf, sizeof(buf));
+			//FString stringCache = *FString(UTF8_TO_TCHAR(buf));
+			//UE_LOG(LogKnucklesLivelinkSource, Display, TEXT("[KNUCKLES LIVELINK] Found the following device: [%i] %s"), id, *stringCache);
+
+			// Check if Knuckles is present and active
+			EDeviceActivityLevel DeviceActivityLevel = SteamVRSystem->GetTrackedDeviceActivityLevel(id);
+
+			if (DeviceActivityLevel != k_EDeviceActivityLevel_Unknown)
+			{
+				if (SteamVRSystem->GetControllerRoleForTrackedDeviceIndex(id) == ETrackedControllerRole::TrackedControllerRole_LeftHand)
+				{
+					EVRInputError inputError = VRInput()->GetSkeletalTrackingLevel(SteamVRSkeletonLeft, &vrSkeletalTrackingLevel);
+					//UE_LOG(LogKnucklesLivelinkSource, Warning, TEXT("[KNUCKLES LIVELINK] Left Skeletal Tracking Level: %i"), vrSkeletalTrackingLevel);
+
+					if (inputError == VRInputError_None &&
+						vrSkeletalTrackingLevel == VRSkeletalTracking_Partial)
+					{
+						KnucklesControllerIdLeft = id;
+						bLeftKnucklesPresent = true;
+						//UE_LOG(LogKnucklesLivelinkSource, Warning, TEXT("[KNUCKLES LIVELINK] Knuckles Left found and is ACTIVE"));
+					}
+
+				}
+				else if (SteamVRSystem->GetControllerRoleForTrackedDeviceIndex(id) == ETrackedControllerRole::TrackedControllerRole_RightHand)
+				{
+					EVRInputError inputError = VRInput()->GetSkeletalTrackingLevel(SteamVRSkeletonRight, &vrSkeletalTrackingLevel);
+					//UE_LOG(LogKnucklesLivelinkSource, Warning, TEXT("[KNUCKLES LIVELINK] Right Skeletal Tracking Level: %i"), vrSkeletalTrackingLevel);
+
+					if (inputError == VRInputError_None &&
+						vrSkeletalTrackingLevel == VRSkeletalTracking_Partial)
+					{
+						KnucklesControllerIdRight = id;
+						bRightKnucklesPresent = true;
+						//UE_LOG(LogKnucklesLivelinkSource, Warning, TEXT("[KNUCKLES LIVELINK] Knuckles Right found and is ACTIVE"));
+					}
+				}
+			}
+		}
+	}
 }
 
 FTransform FKnucklesLiveLinkSource::GetUEBoneTransform(VRBoneTransform_t SteamBoneTransform, FVector OverrideVector, bool bOverrideVector)
