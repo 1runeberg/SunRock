@@ -450,22 +450,36 @@ void FKnucklesLiveLinkSource::CheckForSkeletalController()
 
 FTransform FKnucklesLiveLinkSource::GetUEBoneTransform(VRBoneTransform_t SteamBoneTransform, FVector OverrideVector, bool bOverrideVector)
 {
+	FTransform RetTransform;
+
+	// Calculate UE Bone Transform
 	if (bOverrideVector)
 	{
-		return FTransform(FQuat(SteamBoneTransform.orientation.x,
+		RetTransform = FTransform(FQuat(SteamBoneTransform.orientation.x,
 			-SteamBoneTransform.orientation.y,
 			SteamBoneTransform.orientation.z,
 			-SteamBoneTransform.orientation.w),
 			OverrideVector);
 	}
+	else
+	{
+		RetTransform = FTransform(FQuat(SteamBoneTransform.orientation.x,
+			-SteamBoneTransform.orientation.y,
+			SteamBoneTransform.orientation.z,
+			-SteamBoneTransform.orientation.w),
+			FVector(SteamBoneTransform.position.v[2] * -1.f,
+				SteamBoneTransform.position.v[0],
+				SteamBoneTransform.position.v[1]));
 
-	return FTransform(FQuat(SteamBoneTransform.orientation.x,
-		-SteamBoneTransform.orientation.y,
-		SteamBoneTransform.orientation.z,
-		-SteamBoneTransform.orientation.w),
-		FVector(SteamBoneTransform.position.v[2] * -1.f,
-			SteamBoneTransform.position.v[0],
-			SteamBoneTransform.position.v[1]));
+	}
+
+	// Ensure Rotations are Normalized
+	if (!RetTransform.GetRotation().IsNormalized())
+	{
+		RetTransform.GetRotation().Normalize();
+	}
+
+	return RetTransform;
 }
 
 void FKnucklesLiveLinkSource::GetInputError(EVRInputError InputError, FString InputAction)

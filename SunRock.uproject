@@ -22,6 +22,10 @@
 		{
 			"Name": "KnucklesLiveLink",
 			"Enabled": true
+		},
+		{
+			"Name": "OculusVR",
+			"Enabled": false
 		}
 	],
 	"TargetPlatforms": [

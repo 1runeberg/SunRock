@@ -18,12 +18,11 @@ public class KnucklesLiveLink : ModuleRules
 			new string[]
 			{
                 "Core",
-                "OpenVR",
                 "LiveLinkInterface",
                 "InputDevice",
                 "InputCore",
                 "HeadMountedDisplay",
-                "SteamVR",
+                "OpenVRSDK",
                 "Json"
             }
 			);

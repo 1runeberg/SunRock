@@ -21,7 +21,7 @@ public class KnucklesLiveLinkEditor : ModuleRules
                 "Engine",
                 "Projects",
                 "DetailCustomizations",
-                "OpenVR",
+                "OpenVRSDK",
                 "KnucklesLiveLink",
 				"LiveLinkInterface",
                 "BlueprintGraph"
